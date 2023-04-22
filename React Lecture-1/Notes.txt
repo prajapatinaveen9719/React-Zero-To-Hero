@@ -1,0 +1,22 @@
+React imported from "https://unpkg.com/react@18/umd/react.development.js"
+
+ReactDom imported from "https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+
+
+Note : root.Render will replace everything inside the root
+
+always load cdn before react code order is matter a lot
+
+
+CreateElement Takes Three Parameters
+
+1. Which HTMl element you want To create
+2. In second Parameter inside curly Braces {} you define the props like element id ,className,and your own props
+3. What will you render inside the element 
+
+Note : If you want to render multiple html element inside another element in 3rd parameter 
+       you have to pass the element in array [h1,h2]
+
+
+
+       
