@@ -62,13 +62,12 @@ const LogoComponent = () => {
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             <img
-              src="https://wallpapercave.com/wp/wp3988434.jpg"
+              src="https://img.freepik.com/free-vector/detailed-chef-logo-template_23-2148987940.jpg?w=740&t=st=1683366033~exp=1683366633~hmac=2fbf5ac97fc6a0c3cfc45aec66a47c2aecdcfa8204c29ca030326e90f9b2c6b3"
               alt=""
               width="100"
               height="50"
               className="d-inline-block align-text-top"
             />
-            
           </a>
         </div>
       </nav>
@@ -91,35 +90,40 @@ const Footeromponent = () => {
 const BodyComponent = () => {
   return (
     <>
-    <RestaurentCardComponent restaurantList={restaurantList[0].data}/>
-    <RestaurentCardComponent restaurantList={restaurantList[2].data}/>
-    <RestaurentCardComponent restaurantList={restaurantList[3].data}/>
-    <RestaurentCardComponent restaurantList={restaurantList[4].data}/>
-    <RestaurentCardComponent restaurantList={restaurantList[5].data}/>
-
+      {restaurantList.map((restaurant) => {
+        return <RestaurentCardComponent {...restaurant.data} />;
+      })}
     </>
   );
 };
 
-
-const RestaurentCardComponent=(props)=>{
-  console.log(props)
+const RestaurentCardComponent = ({cloudinaryImageId,name,cuisines,lastMileTravelString}) => {
   return (
     <>
-    <div className="card restaurentCard" style={{width: "18rem"}}>
-      <img src={"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
-            props.restaurantList.cloudinaryImageId} className="card-img-top" alt="..." />
-      <div className="card-body">
-        <h5 className="card-title">{props.restaurantList.name}</h5>
+      <div className="card restaurentCard" style={{ width: "18rem" }}>
+        <img
+          src={
+            "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
+            cloudinaryImageId
+          }
+          className="card-img-top"
+          alt="..."
+        />
+        <div className="card-body">
+          <h5 className="card-title">{name}</h5>
+        </div>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">
+            {cuisines.join(", ")}
+          </li>
+          <li className="list-group-item">
+            {lastMileTravelString}
+          </li>
+        </ul>
       </div>
-      <ul className="list-group list-group-flush">
-        <li className="list-group-item">{props.restaurantList.cuisines.join(", ")}</li>
-        <li className="list-group-item">{props.restaurantList.lastMileTravelString}</li>
-      </ul>
-    </div>
-  </>
-  )
-}
+    </>
+  );
+};
 
 const AppComponent = () => {
   return (
