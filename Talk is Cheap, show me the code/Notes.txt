@@ -213,3 +213,5 @@ destructuring
 In industry we don’t use for loop -->instead of it we use map  it is the best way to do Functional programming
 React Fiber--React Introduce New Reconcillation Engine in React 16
 not use index for key
+always use camelCase of attribute name in JSX/HTML in React
+you can apply inline css between style={{}} in React 
