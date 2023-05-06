@@ -1,0 +1,215 @@
+npm init
+
+The npm init command in the JSON language creates a package.json file for your project’s frontend.
+A package.json file is a file that contains information about the project’s packages and dependencies. 
+It also contains metadata for the project such as version number, author, and description.
+
+This will begin the initialization process. During the process, you will be prompted to provide the above
+information about your project. After completing the prompts, a package.json file will be created in your current directory.
+A best practice is to run this command while in the root directory of your project.
+ 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+What is npm?
+
+Built as a package manager and installer, npm (Node Package Manager) is also the world’s largest code library, 
+containing over 800,000 code packages which can be installed through the command line.
+Npm itself is installed through Node.js. To use npm in the command line, you must have Node.js installed.
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+What is difference between `dependencies` vs `devDependencies`
+
+The dependencies Object
+The dependencies object specifies the packages that you need to run your code. For example React, Vue, Firebase, etc.
+When you run npm install some-package, npm installs the package and adds it to the dependencies object in the package.json file.
+If you are working on someone else’s code (let’s say you cloned a repository from GitHub), and you run npm install from the root 
+folder of the project, npm will install all the dependencies that are listed in the dependencies object.
+npm install <idependencies> 
+
+The devDependencies Object
+The devDependencies object maps the packages that you will only need during the development of your project.
+ You don’t need them to run your code in production. For example, a testing framework like Jest, or other utilities like ESLint.
+When you run npm install some-package --save-dev, npm installs the package and adds it to the devDependencies object in 
+the package.json file.
+If you run npm install on a cloned repository, npm assumes that you are developing the project. 
+That’s why it will also install all the dependencies listed in the devDependencies object.
+If you do not want to install devDependencies you can use the --production flag, like so:
+npm install --production
+The package manager will only install the dependencies listed in the dependencies object.
+
+npm install <dev_dependencies> --save-dev 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+What is tree shaking?
+
+ When we import and export modules in JavaScript, most of the time there is unused code floating around. 
+ Tree shaking or dead code elimination means that unused modules will not be included in the bundle during the build process.
+
+Tools like webpack will detect dead code and mark it as “unused module” but it won’t remove the code.
+ Webpack relies on minifiers to cleanup dead code, one of them is UglifyJS plugin, which will eliminate the dead code from the bundle. 
+
+It only works with import and export. It won’t work with CommonJS require syntax. Same applies to npm dependencies.
+great example is lodash, just import pick from ‘lodash/pick and your bundle will only include one small module instead of entire
+lodash library.
+
+Utilizing the tree shaking and dead code elimination can significantly reduce the code size we have in our application. 
+The less code we send over the wire the more performant the application will be.     
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+What is Hot Module Replacement?
+
+Hot Module Replacement (HMR) exchanges, adds, or removes modules while an application is running, without a full reload. This can significantly speed up development in a few ways:
+
+Retain application state which is lost during a full reload.
+Save valuable development time by only updating what's changed.
+
+Instantly update the browser when modifications are made to CSS/JS in the source code, which is almost comparable to changing styles
+directly in the browser's dev tools.
+
+
+In the Application
+The following steps allow modules to be swapped in and out of an application:
+
+The application asks the HMR runtime to check for updates.
+The runtime asynchronously downloads the updates and notifies the application.
+The application then asks the runtime to apply the updates.
+The runtime synchronously applies the updates.
+You can set up HMR so that this process happens automatically, or you can choose to require user interaction for updates to occur.
+
+
+In the Compiler
+In addition to normal assets, the compiler needs to emit an "update" to allow updating from the previous version to the new version. The "update" consists of two parts:
+
+The updated manifest (JSON)
+One or more updated chunks (JavaScript)
+The manifest contains the new compilation hash and a list of all updated chunks. Each of these chunks contains the new code for all updated modules (or a flag indicating that the module was removed).
+
+The compiler ensures that module IDs and chunk IDs are consistent between these builds. It typically stores these IDs in memory (e.g. with webpack-dev-server), but it's also possible to store them in a JSON file.
+
+In a Module
+HMR is an opt-in feature that only affects modules containing HMR code. One example would be patching styling through the style-loader. In order for patching to work, the style-loader implements the HMR interface; when it receives an update through HMR, it replaces the old styles with the new ones.
+
+Similarly, when implementing the HMR interface in a module, you can describe what should happen when the module is updated. However, in most cases, it's not mandatory to write HMR code in every module. If a module has no HMR handlers, the update bubbles up. This means that a single handler can update a complete module tree. If a single module from the tree is updated, the entire set of dependencies is reloaded.
+
+See the HMR API page for details on the module.hot interface.
+
+In the Runtime
+Here things get a bit more technical... if you're not interested in the internals, feel free to 
+jump to the HMR API page or HMR guide.
+
+For the module system runtime, additional code is emitted to track module parents and children. 
+On the management side, the runtime supports two methods: check and apply.
+
+A check makes an HTTP request to the update manifest. If this request fails, there is no update available. 
+If it succeeds, the list of updated chunks is compared to the list of currently loaded chunks. For each loaded chunk, 
+the corresponding update chunk is downloaded. All module updates are stored in the runtime. When all update chunks have 
+been downloaded and are ready to be applied, the runtime switches into the ready state.
+
+The apply method flags all updated modules as invalid. For each invalid module, there needs to be an update handler in 
+the module or in its parent(s). Otherwise, the invalid flag bubbles up and invalidates parent(s) as well. 
+Each bubble continues until the app's entry point or a module with an update handler is reached (whichever comes first). 
+If it bubbles up from an entry point, the process fails.
+
+Afterwards, all invalid modules are disposed (via the dispose handler) and unloaded. The current hash is then updated and 
+all accept handlers are called. The runtime switches back to the idle state and everything continues as normal.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Tilde(~) notation
+
+Used for Approximately equivalent to version.
+
+It will update you to all future patch versions, without incrementing the minor version. ~1.2.3 will use 
+releases from 1.2.3 to <1.3.
+
+It gives you bug fix releases.
+It will update in decimals.
+Not a default notation used by NPM.
+Example: ~1.0.2
+
+------------------------------------------------------------------------------------------
+
+
+Caret(^) notation
+Used for Compatible with version.
+
+It will update you to all future minor/patch versions, without incrementing the major version.
+^2.3.4 will use releases from 2.3.4 to <3.0.0
+
+It gives you backwards-compatible new functionality as well.
+It will update to its latest version in numbers.
+Used by NPM as default notation.
+Example: ^1.0.2
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+What is a CDN?
+
+A content delivery network (CDN) is a geographically distributed group of servers that caches content close to end users. 
+A CDN allows for the quick transfer of assets needed for loading Internet content, 
+including HTML pages, JavaScript files, stylesheets, images, and videos
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Git Ignore
+
+When sharing your code with others, there are often files or parts of your project, you do not want to share.
+
+Examples
+log files
+temporary files
+hidden files
+personal files
+etc.
+
+Git can specify which files or parts of your project should be ignored by Git using a .gitignore file.
+Git will not track files and folders specified in .gitignore. However, the .gitignore file itself IS tracked by Git.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Browser Script cannot have import tag
+
+Soln--> add type="module" in script tag
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+build using npx 
+npx parcel build <main entry fileName>
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+pollyfills
+babel --convert new code to older code
+Tree Shaking--Remove unwanted Code
+add start command in package.json
+install babel console remover and configure using babelrc
+react diffing algorithm-re render everything
+JSX =>React.createElement => object => HTML
+
+React Component
+1.Functional Component (New)
+2.Class Based Component (Old)
+
+
+React Element Render using Curly Braces {} For Ex. {Title}
+
+Functional Component render using <Title/> or inside curly braces you can use {Title()}
+
+You can write any js code inside curly Braces like console.log(),calculation 
+
+
+Sanitisation Code inside JSX
+Component Composition
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+React  Fragment --Use for parent Element (from import React)
+JSX  only have one parent
+React.Fragment is like a empty tag
+You can also use "<></>" Insted of writing  <React.Fragment></React.Fragment>
+Config Driven Ui -->
+Optional Chaining
+Props--Passing Data into Functional Component
+Passing arguments and recieve Parameters
+destructuring
+In industry we don’t use for loop -->instead of it we use map  it is the best way to do Functional programming
+React Fiber--React Introduce New Reconcillation Engine in React 16
+not use index for key
