@@ -1,10 +1,10 @@
-import { restaurantList } from "./config";
-import RestaurentCardComponent from "./RestaurentCard";
 import { useState } from "react";
+import { restaurantList } from "./config";
 
-const BodyComponent = () => {
+const SearchBarComponent = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [restaurents, setRestaurents] = useState(restaurantList);
+  const [searchRestaurent, setSearchRestaurent] = useState("");
+
   return (
     <>
       <div className="container searchBar">
@@ -30,7 +30,7 @@ const BodyComponent = () => {
             <button
               onClick={() => {
                 const filtredRestaurentList = filterRestaurent(searchValue);
-                setRestaurents(filtredRestaurentList);
+                setSearchRestaurent(filtredRestaurentList);
               }}
             >
               Search
@@ -38,24 +38,14 @@ const BodyComponent = () => {
           </div>
         </div>
       </div>
-      {restaurents.map((restaurant) => {
-        return (
-          <RestaurentCardComponent
-            {...restaurant.data}
-            key={restaurant.data.id}
-          />
-        );
-      })}
     </>
   );
 };
 
 function filterRestaurent(searchText) {
-
-  const data = restaurantList.filter((restaurant) => 
-    restaurant.data.name.includes(searchText)
-  );
-  return data;
+  restaurantList.filter(() => {
+    return (restaurantList.data.name = searchText);
+  });
 }
 
-export default BodyComponent;
+export default SearchBarComponent;

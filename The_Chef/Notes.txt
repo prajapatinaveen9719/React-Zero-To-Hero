@@ -249,4 +249,7 @@ Why we need state Variable ?
 If we change the local variable then React will Not know that variable is changed
 and does not update the DOM thats why we need the state variable.
 React is watching state variable
+----------------------------------------------------------------------------------------------------------
+We alway write hooks inside a functional components otherwise it will give error
+TypeError: Cannot read properties of null (reading 'useState')
 
