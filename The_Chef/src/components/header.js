@@ -40,10 +40,10 @@ const HeaderComponent = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to={"/"}>Home</Link>
+                <Link to={"/"}> Home</Link>
               </li>
               <li className="nav-item">
-              <Link to={"conatct"}>Conatct Us</Link>
+              <Link to={"contact"}> Contact Us</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
