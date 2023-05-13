@@ -276,3 +276,5 @@ Create error Component and also use Hook i.e fro ReactrouterError
 Instead of anchor tag we use Link Tag because anchor tag refresh the page
 retrieve the param from URL
 make dynamic RestaurentDetails Page
+
+Steps To Implement Rounting 
