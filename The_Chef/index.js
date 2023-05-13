@@ -8,6 +8,7 @@ import BodyComponent from "./src/components/body.js";
 import ContactUsComponent from "./src/components/Contact";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ErrorComponent from "./src/components/errorPage";
+import RestaurentDetailComponent from "./src/components/restaurentDetails";
 
 const AppLayout = () => {
   return (
@@ -28,6 +29,7 @@ const appRoutes = createBrowserRouter([
     children: [
       { path: "contact", element: <ContactUsComponent /> },
       { path: "/", element: <BodyComponent /> },
+      {path:'restaurent/:id',element:<RestaurentDetailComponent/>}
     ],
   },
 ]);
