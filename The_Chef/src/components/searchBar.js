@@ -18,7 +18,6 @@ const SearchBarComponent = () => {
                 placeholder="Search anything..."
                 value={searchValue}
                 onChange={(e) => {
-                  // console.log(e.target.value)
                   setSearchValue(e.target.value);
                 }}
               />
@@ -43,9 +42,9 @@ const SearchBarComponent = () => {
 };
 
 function filterRestaurent(searchText) {
-  restaurantList.filter(() => {
-    return (restaurantList.data.name = searchText);
-  });
+  restaurantList.filter((restaurant)=> 
+   restaurant.data.name = searchText
+  )
 }
 
 export default SearchBarComponent;

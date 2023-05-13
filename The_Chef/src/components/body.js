@@ -1,10 +1,35 @@
-import { restaurantList } from "./config";
+import { swiggy_api_URL } from "./config";
 import RestaurentCardComponent from "./RestaurentCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BodyComponent = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [restaurents, setRestaurents] = useState(restaurantList);
+  const [restaurents, setRestaurents] = useState([]);
+  const [filteredRestaurents, setfilteredRestaurents] = useState([]);
+
+  useEffect(() => {
+    GetRestaurants();
+  }, []);
+
+  async function GetRestaurants() {
+    let response = await fetch(swiggy_api_URL);
+    let apiRestaurentList = await response.json();
+    setRestaurents(apiRestaurentList?.data?.cards[2]?.data?.data?.cards);
+    setfilteredRestaurents(
+      apiRestaurentList?.data?.cards[2]?.data?.data?.cards
+    );
+  }
+
+  function filterRestaurent(searchText) {
+    const data = restaurents.filter((restaurant) =>
+      restaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    return data;
+  }
+
+  if(restaurents.length==0)
+  return <><h1>Shimmer Effect......</h1></>
+
   return (
     <>
       <div className="container searchBar">
@@ -18,7 +43,6 @@ const BodyComponent = () => {
                 placeholder="Search anything..."
                 value={searchValue}
                 onChange={(e) => {
-                  // console.log(e.target.value)
                   setSearchValue(e.target.value);
                 }}
               />
@@ -26,19 +50,19 @@ const BodyComponent = () => {
               <span className="left-pan">
                 <i className="fa fa-microphone"></i>
               </span>
+              <button
+                onClick={() => {
+                  const filtredRestaurentList = filterRestaurent(searchValue);
+                  setfilteredRestaurents(filtredRestaurentList);
+                }}
+              >
+                Search
+              </button>
             </div>
-            <button
-              onClick={() => {
-                const filtredRestaurentList = filterRestaurent(searchValue);
-                setRestaurents(filtredRestaurentList);
-              }}
-            >
-              Search
-            </button>
           </div>
         </div>
       </div>
-      {restaurents.map((restaurant) => {
+      {filteredRestaurents.map((restaurant) => {
         return (
           <RestaurentCardComponent
             {...restaurant.data}
@@ -49,13 +73,5 @@ const BodyComponent = () => {
     </>
   );
 };
-
-function filterRestaurent(searchText) {
-
-  const data = restaurantList.filter((restaurant) => 
-    restaurant.data.name.includes(searchText)
-  );
-  return data;
-}
 
 export default BodyComponent;

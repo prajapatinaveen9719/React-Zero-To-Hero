@@ -252,4 +252,27 @@ React is watching state variable
 ----------------------------------------------------------------------------------------------------------
 We alway write hooks inside a functional components otherwise it will give error
 TypeError: Cannot read properties of null (reading 'useState')
+----------------------------------------------------------------------------------------------------------
+read about filter Method in js
 
+////////////////////////////////////Exploring the world////////////////////////////////////////////////////////////////////
+array destructuring vs object destructuring
+Shimmer Ui/Shimmer design https://reactjsexample.com/customizable-shimmer-effects-for-react/
+Monlothic vs MicroServices
+async await vs promises
+jS expression vs js statement
+useState
+useEffects
+
+https://www.javascripttutorial.net/javascript-fetch-api/
+
+//////////////////////Error///////////
+Cannot read properties of null (reading 'useEffect')
+Declare useEffect inside functional components
+
+----------------------------------------Finding The Path-------------------------------------------------------------------
+Implement Routing using ReactRouter dom pacakage 
+Create error Component and also use Hook i.e fro ReactrouterError
+Instead of anchor tag we use Link Tag because anchor tag refresh the page
+retrieve the param from URL
+make dynamic RestaurentDetails Page
