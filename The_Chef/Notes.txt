@@ -279,3 +279,9 @@ make dynamic RestaurentDetails Page
 
 Steps To Implement Rounting 
 
+---------------------------------------------
+In class based component
+1) class constructor is called
+2) class render method is called
+3) componentDidMount is called //best places to make an api call
+
