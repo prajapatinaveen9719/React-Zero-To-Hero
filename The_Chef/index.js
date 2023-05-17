@@ -10,11 +10,13 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ErrorComponent from "./src/components/errorPage";
 import RestaurentDetailComponent from "./src/components/restaurentDetails";
 
+
 const AppLayout = () => {
   return (
     <>
       <HeaderComponent />
       <Outlet></Outlet>
+    
       {/* <BodyComponent></BodyComponent> */}
       {FooterComponent()}
     </>

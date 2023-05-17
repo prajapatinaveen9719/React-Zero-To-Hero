@@ -1,4 +1,4 @@
-const RestaurentCardComponent = ({cloudinaryImageId,name,cuisines,lastMileTravelString}) => {
+const RestaurentCardComponent = ({cloudinaryImageId,name,cuisines,lastMileTravelString,id}) => {
     return (
       <>
         <div className="card restaurentCard" style={{ width: "18rem" }}>
@@ -16,6 +16,7 @@ const RestaurentCardComponent = ({cloudinaryImageId,name,cuisines,lastMileTravel
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
               {cuisines.join(", ")}
+              {id}
             </li>
             <li className="list-group-item">
               {lastMileTravelString}

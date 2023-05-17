@@ -737,3 +737,8 @@ export const restaurantList = [
   ];
   
   
+
+export const swiggy_menu_api_URL =
+"https://www.swiggy.com/dapi/menu/v4/full?lat=12.9351929&lng=72.448069999999&menuId=";
+
+
