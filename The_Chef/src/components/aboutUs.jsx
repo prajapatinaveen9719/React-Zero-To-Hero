@@ -6,7 +6,7 @@ import Child from "./child2"
 class AboutUsComponent extends React.Component {
 
   constructor() {
-    console.log("Parent Constructor")
+    //console.log("Parent Constructor")
     super();
 
 
@@ -18,18 +18,18 @@ class AboutUsComponent extends React.Component {
   }
 
   componentDidMount(){
-    console.log("Parent componentDidMount")
+    //console.log("Parent componentDidMount")
   }
 
 
   render() {
-    console.log("Parent render")
+   // console.log("Parent render")
     return (
       <>
         <h1>This is about us page.</h1>
         <h2>{this.state.Counter}</h2>
         <AboutMe/>
-        <Child/>
+        {/* <Child/> */}
       </>
     );
   }
