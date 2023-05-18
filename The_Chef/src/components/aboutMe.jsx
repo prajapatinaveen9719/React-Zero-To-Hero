@@ -10,6 +10,9 @@ class AboutMe extends React.Component {
     };
   }
 
+
+
+
   async componentDidMount() {
     //console.log("Child componentDidMount ");
     const options = {
@@ -30,6 +33,8 @@ class AboutMe extends React.Component {
     });
     //console.log("Child componentDidMount 2");
   }
+
+
 
   render() {
    // console.log("Child Render");
