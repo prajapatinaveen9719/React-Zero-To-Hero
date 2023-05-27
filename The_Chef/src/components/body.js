@@ -1,11 +1,15 @@
+import useOnline from "../utils/useOnline";
 import { swiggy_api_URL } from "./config";
 import RestaurentCardComponent from "./RestaurentCard";
 import { useEffect, useState } from "react";
+
 
 const BodyComponent = () => {
   const [searchValue, setSearchValue] = useState("");
   const [restaurents, setRestaurents] = useState([]);
   const [filteredRestaurents, setfilteredRestaurents] = useState([]);
+
+ 
 
   useEffect(() => {
     GetRestaurants();
@@ -26,6 +30,11 @@ const BodyComponent = () => {
     );
     return data;
   }
+
+  const isOnline=useOnline();
+
+  if(!isOnline)
+  return <><h1>Please check your internet connection.....</h1></>
 
   if(restaurents.length==0)
   return <><h1>Shimmer Effect......</h1></>

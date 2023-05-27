@@ -285,3 +285,6 @@ In class based component
 2) class render method is called
 3) componentDidMount is called //best places to make an api call
 
+///////////////////////////////////////////
+create your own hook
+do chunkings,lazy loading,code splitting,dynamic bundling
