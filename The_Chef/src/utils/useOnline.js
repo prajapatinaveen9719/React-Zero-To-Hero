@@ -19,8 +19,8 @@ const useOnline = () => {
 
     //remove the eventlistner after going to another page
     return()=>{
-        window.removeEventListener(handleOnline);
-        window.removeEventListener(handleOffline);
+        window.removeEventListener('online',handleOnline);
+        window.removeEventListener('offline',handleOffline);
     }
 
   }, []);

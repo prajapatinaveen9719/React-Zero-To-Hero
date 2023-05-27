@@ -46,9 +46,7 @@ const HeaderComponent = () => {
               <Link to={"contact"}> Contact Us</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
-                </a>
+              <Link to={"instamart"}>Instamart</Link>
               </li>
               <li className="nav-item">
                 <a

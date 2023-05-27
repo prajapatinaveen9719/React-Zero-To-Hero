@@ -288,3 +288,9 @@ In class based component
 ///////////////////////////////////////////
 create your own hook
 do chunkings,lazy loading,code splitting,dynamic bundling
+   create a file
+   import it using lazy in router file
+   react suspend loading because it talkes time to load file  and react try to render it before it loads 
+   to handle this case we use suspense from react
+   wrap the component inside the suspense tag
+   its also have the property fallback time before the component loads

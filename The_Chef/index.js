@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/Client";
 import "bootstrap/dist/css/bootstrap.css";
 import "/app.css";
@@ -11,12 +11,16 @@ import ErrorComponent from "./src/components/errorPage";
 import RestaurentDetailComponent from "./src/components/restaurentDetails";
 
 
+const Instamart=lazy(()=>import("./src/components/instamart"))
+
 const AppLayout = () => {
+
+
   return (
     <>
       <HeaderComponent />
       <Outlet></Outlet>
-    
+
       {/* <BodyComponent></BodyComponent> */}
       {FooterComponent()}
     </>
@@ -31,7 +35,8 @@ const appRoutes = createBrowserRouter([
     children: [
       { path: "contact", element: <ContactUsComponent /> },
       { path: "/", element: <BodyComponent /> },
-      {path:'restaurent/:id',element:<RestaurentDetailComponent/>}
+      { path: "restaurent/:id", element: <RestaurentDetailComponent /> },
+      { path: "instamart", element: <Suspense><Instamart /></Suspense> },
     ],
   },
 ]);
