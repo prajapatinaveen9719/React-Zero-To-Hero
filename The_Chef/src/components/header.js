@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const LogoComponent = () => {
   return (
@@ -21,6 +22,8 @@ const LogoComponent = () => {
 };
 
 const HeaderComponent = () => {
+
+  const cartitems=useSelector(store=>store.cart.items)
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,20 +43,26 @@ const HeaderComponent = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to={"/"}> Home</Link>
+                <Link to={"/"} className="nav-link"> Home</Link>
               </li>
               <li className="nav-item">
-              <Link to={"contact"}> Contact Us</Link>
+              <Link to={"contact"} className="nav-link" > Contact Us</Link>
               </li>
               <li className="nav-item">
-              <Link to={"instamart"}>Instamart</Link>
+              <Link to={"instamart"} className="nav-link" >Instamart</Link>
               </li>
+
+              <li className="nav-item">
+              <Link to={"cart"} className="nav-link" >Cart-{cartitems.length}</Link>
+              </li>
+
               <li className="nav-item">
                 <a
                   className="nav-link disabled"
                   href="#"
                   tabIndex="-1"
                   aria-disabled="true"
+                
                 >
                   Disabled
                 </a>

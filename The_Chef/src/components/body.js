@@ -3,13 +3,10 @@ import { swiggy_api_URL } from "./config";
 import RestaurentCardComponent from "./RestaurentCard";
 import { useEffect, useState } from "react";
 
-
 const BodyComponent = () => {
   const [searchValue, setSearchValue] = useState("");
   const [restaurents, setRestaurents] = useState([]);
   const [filteredRestaurents, setfilteredRestaurents] = useState([]);
-
- 
 
   useEffect(() => {
     GetRestaurants();
@@ -18,26 +15,38 @@ const BodyComponent = () => {
   async function GetRestaurants() {
     let response = await fetch(swiggy_api_URL);
     let apiRestaurentList = await response.json();
-    setRestaurents(apiRestaurentList?.data?.cards[2]?.data?.data?.cards);
+    //console.log(apiRestaurentList);
+    setRestaurents(
+      apiRestaurentList?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
     setfilteredRestaurents(
-      apiRestaurentList?.data?.cards[2]?.data?.data?.cards
+      apiRestaurentList?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   }
 
   function filterRestaurent(searchText) {
     const data = restaurents.filter((restaurant) =>
-      restaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
+      restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
     );
     return data;
   }
 
-  const isOnline=useOnline();
+  const isOnline = useOnline();
 
-  if(!isOnline)
-  return <><h1>Please check your internet connection.....</h1></>
+  if (!isOnline)
+    return (
+      <>
+        <h1>Please check your internet connection.....</h1>
+      </>
+    );
 
-  if(restaurents.length==0)
-  return <><h1>Shimmer Effect......</h1></>
+  if (!restaurents ||restaurents.length ===0) {
+    return (
+      <>
+        <h1>Shimmer Effect......</h1>
+      </>
+    );
+  }
 
   return (
     <>
@@ -71,14 +80,17 @@ const BodyComponent = () => {
           </div>
         </div>
       </div>
+      <div className="row row-cols-1 row-cols-md-2">
       {filteredRestaurents.map((restaurant) => {
         return (
+        
           <RestaurentCardComponent
-            {...restaurant.data}
-            key={restaurant.data.id}
+            {...restaurant.info}
+            key={restaurant.info.id}
           />
         );
       })}
+      </div>
     </>
   );
 };

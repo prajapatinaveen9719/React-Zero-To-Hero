@@ -1,4 +1,10 @@
+import { Link } from "react-router-dom";
+import UserContext from "../utils/userContext";
+import { useContext } from "react";
+
+
 const RestaurentCardComponent = ({cloudinaryImageId,name,cuisines,lastMileTravelString,id}) => {
+  const user=useContext(UserContext)
     return (
       <>
         <div className="card restaurentCard" style={{ width: "18rem" }}>
@@ -11,15 +17,21 @@ const RestaurentCardComponent = ({cloudinaryImageId,name,cuisines,lastMileTravel
             alt="..."
           />
           <div className="card-body">
+            <Link to={"/restaurent/"+id}>
+         
             <h5 className="card-title">{name}</h5>
+            </Link>
           </div>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              {cuisines.join(", ")}
+              {cuisines}
               {id}
             </li>
             <li className="list-group-item">
               {lastMileTravelString}
+            </li>
+            <li className="list-group-item">
+              {user.email}
             </li>
           </ul>
         </div>

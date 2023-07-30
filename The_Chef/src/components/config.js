@@ -1,6 +1,6 @@
 
 export const swiggy_api_URL =
-  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING";
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6351575&lng=77.32831449999999&page_type=DESKTOP_WEB_LISTING";
 
 
 // RestaurantList is JSON Data for displaying cards
@@ -739,6 +739,6 @@ export const restaurantList = [
   
 
 export const swiggy_menu_api_URL =
-"https://www.swiggy.com/dapi/menu/v4/full?lat=12.9351929&lng=72.448069999999&menuId=";
+"https://www.swiggy.com/dapi/menu/v4/full?lat=lat=lat=28.6351575&lng=77.32831449999999&menuId=";
 
 

@@ -294,3 +294,60 @@ do chunkings,lazy loading,code splitting,dynamic bundling
    to handle this case we use suspense from react
    wrap the component inside the suspense tag
    its also have the property fallback time before the component loads
+   fallback means the value which we want to show until the components is loaded
+
+
+////////////////////Data is the new oil ///////////////////////////
+Passing data from parent to child  using Props 
+props drilling 
+React Dev Tools Chrome Extension
+lifting the state up(control from child to parent)
+use profiler in react developer tools
+create accordian and collapsable accordian
+
+Context =>if you want the data is available anywhere  in react app you can use Context
+alternative is redux tor 
+its a shared data
+ngrx ,mobx library but react have its own 
+
+class component does not have hooks
+import the context like component
+
+so we use Context by the help of <UserContext.Consumer></UserContext.Consumer>  
+    and its take a function which have all values of Context 
+
+we can use UserContex.Provider and wrap our component inside provider tag  provider is used to 
+set dynaic value
+
+///////////////Lets build our store//////////
+Redux store is a big object
+state and props are tightly coupled
+all components can access redux store
+in redux we have single store for handling everything
+we will create slices of our store (divide store in multiple portion)
+for ex userSlice,AuthSlice,CartSice
+
+our component cant directly modified the store
+to do this we have to do dispach and action
+which calls a normal js function and then function modify the store
+and this normal js function is known as reducer
+and we use useSelector hook to read data
+when we use selector its is known a sSubscribe to the store
+useSelector is a hook and a hook is a function
+
+//////////////Time for test///////
+
+adding new codes/functionality does not break previous functionality
+
+test driven deelopement -write test cases even before writing code
+developement process very very slow
+but the quality of code is very very good
+generally TDD does not use in company
+
+
+
+
+
+
+
+

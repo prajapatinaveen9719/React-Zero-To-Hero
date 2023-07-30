@@ -10,3 +10,7 @@
 .searchBar{
   margin-top: 10px;
 }
+
+.nav-link {
+  padding: 8px 16px; /* Adjust the padding values as per your requirement */
+}

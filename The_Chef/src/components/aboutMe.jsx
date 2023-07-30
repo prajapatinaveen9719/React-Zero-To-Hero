@@ -1,4 +1,5 @@
 import React from "react";
+import UserContext from "../utils/userContext";
 
 class AboutMe extends React.Component {
   constructor() {
@@ -40,9 +41,13 @@ class AboutMe extends React.Component {
    // console.log("Child Render");
     return (
       <>
+      <UserContext.Consumer>
+        {(value)=> <h1>{value.email}</h1>}
+      </UserContext.Consumer>
         <h1>My Name is {this.state.userData.login}</h1>
         <h1>ID  {this.state.userData.id}</h1>
         <h1>Contact at {this.state.userData.html_url}</h1>
+        
       </>
     );
   }
